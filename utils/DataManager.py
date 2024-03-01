@@ -1,5 +1,9 @@
 import os
 import pandas as pd
+import torch
+import torchvision.transforms as transforms
+import PIL.Image as Image
+import tifffile
 
 
 class DataManager:
@@ -21,19 +25,32 @@ class DataManager:
             raise Exception("Hr and Lr datasets do not match")
 
         data_points_df = pd.DataFrame()
-        data_points_df['points_name'] = data_points_dir # Dada que los datos son una combinación de dataframes podría
+        data_points_df['points_name'] = data_points_dir  # Dada que los datos son una combinación de dataframes podría
         # poner una opción para decidir con que dataframes se trabaja.
         return data_points_df
 
-    def get_random_data(self, n_samples): #Probablemente habrá que cambiar esto para que vaya con tensores para el tema de la gpu
+    def get_random_data(self, n_samples):
         data_names = self.data_points['points_name'].sample(n=n_samples)
-        hr_images = list()
-        lr_images = list()
-        for data_name in data_names:
-            hr_images.append(self.get_hr_image(self.data_folder + "/" + self.hr_dataset_name + "/" + data_name))
-            lr_images.append(self.get_lr_image(self.data_folder + "/" + self.lr_dataset_name + "/" + data_name))
+        hr_images = self.get_hr_images(data_names)
+        lr_images = self.get_lr_images(data_names)
 
-    def get_hr_image(self, dir):
-        return 1
-    def get_lr_image(self, dir):
-        return 1
+    def get_hr_images(self, data_points):
+        images = []
+        for data_point in data_points:
+            directory = self.data_folder + "/" + self.hr_dataset_name + "/" + data_point + "/" + data_point + "_rgb.png"
+            images.append(Image.open(directory))
+        images_tensor = torch.stack([transforms.ToTensor()(img) for img in images])
+        return images_tensor
+
+    def get_lr_images(self, data_points):
+        images = torch.zeros(len(data_points))
+        source = "L2A"  # Con el core es fijo aqui pero en el  futuro debe ser interchangeable
+        for i, data_point in enumerate(data_points):
+            directory = self.data_folder + "/" + self.lr_dataset_name + "/" + data_point + "/"
+            image_package = []
+            for image_id in range(1, 16):
+                directory = directory + "-" + str(id) + "-" + source + "_data.tiff"
+                image_package.append(tifffile.imread(directory))
+            tensor_package = torch.stack([transforms.ToTensor()(img) for img in image_package])
+            images[i] = tensor_package
+        return images
