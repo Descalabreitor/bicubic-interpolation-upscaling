@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee8c141a-7fd7-4200-8975-6f5584c6214d" name="Changes" comment="data sampling" />
+    <list default="true" id="ee8c141a-7fd7-4200-8975-6f5584c6214d" name="Changes" comment="data sampling">
+      <change beforePath="$PROJECT_DIR$/.idea/bicubic-interpolation-upscaling.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bicubic-interpolation-upscaling.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bicubic_interpolation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/bicubic_interpolation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imagen_interpolada.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/imagen_interpolada.jpg" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,6 +91,10 @@
       <workItem from="1709833586688" duration="760000" />
       <workItem from="1710148008262" duration="548000" />
       <workItem from="1710148560221" duration="4358000" />
+      <workItem from="1710177773918" duration="4387000" />
+      <workItem from="1710183165353" duration="3965000" />
+      <workItem from="1710187978330" duration="2532000" />
+      <workItem from="1710201495115" duration="3272000" />
     </task>
     <task id="LOCAL-00001" summary="DataManager creation + folder check and data initialization">
       <option name="closed" value="true" />
