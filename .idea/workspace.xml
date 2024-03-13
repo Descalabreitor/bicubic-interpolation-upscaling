@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee8c141a-7fd7-4200-8975-6f5584c6214d" name="Changes" comment="data sampling">
-      <change beforePath="$PROJECT_DIR$/.idea/bicubic-interpolation-upscaling.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bicubic-interpolation-upscaling.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bicubic_interpolation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/bicubic_interpolation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imagen_interpolada.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/imagen_interpolada.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bicubic_interpolation.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,6 +93,10 @@
       <workItem from="1710183165353" duration="3965000" />
       <workItem from="1710187978330" duration="2532000" />
       <workItem from="1710201495115" duration="3272000" />
+      <workItem from="1710247397970" duration="926000" />
+      <workItem from="1710349870507" duration="1395000" />
+      <workItem from="1710351986248" duration="7000" />
+      <workItem from="1710352005197" duration="274000" />
     </task>
     <task id="LOCAL-00001" summary="DataManager creation + folder check and data initialization">
       <option name="closed" value="true" />
