@@ -32,6 +32,7 @@ class DataManager:
             directory = self.data_folder + "/" + self.hr_dataset_name + "/" + data_point + "/" + data_point + "_rgb.png"
             images.append(Image.open(directory))
         images_tensor = torch.stack([transforms.ToTensor()(img) for img in images])
+        images_tensor = images_tensor.permute(0, 2, 3, 1)
         return images_tensor
 
     def get_lr_images(self, data_points, n_revisits=1, image_shape=(164, 164, 3)):
