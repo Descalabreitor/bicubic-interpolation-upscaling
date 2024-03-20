@@ -1,10 +1,10 @@
-import os
 import pandas as pd
 import torch
 import torchvision.transforms as transforms
 import PIL.Image as Image
 import tifffile
-
+import numpy as np
+import os
 
 class DataManager:
     def __init__(self, data_directory, lr_dataset_name, hr_dataset_name):
@@ -17,22 +17,14 @@ class DataManager:
         self.data_points = self.get_data_points()
 
     def get_data_points(self):
-        hr_data_points_dir = os.listdir(self.data_folder + "/" + self.hr_dataset_name)
-        lr_data_points_dir = os.listdir(self.data_folder + "/" + self.lr_dataset_name)
-        data_points_dir = set(hr_data_points_dir + lr_data_points_dir)
-
-        if len(data_points_dir) != len(hr_data_points_dir):
-            raise Exception("Hr and Lr datasets do not match")
-
-        data_points_df = pd.DataFrame()
-        data_points_df['points_name'] = data_points_dir  # Dada que los datos son una combinación de dataframes podría
-        # poner una opción para decidir con que dataframes se trabaja.
+        data_points_df = pd.read_csv(self.data_folder + "/metadata.csv", sep=",")
         return data_points_df
 
-    def get_random_data(self, n_samples):
-        data_names = self.data_points['points_name'].sample(n=n_samples)
+    def get_random_data(self, n_samples=10, n_revisits=1):
+        data_names = self.data_points['ID'].sample(n=n_samples)
         hr_images = self.get_hr_images(data_names)
-        lr_images = self.get_lr_images(data_names)
+        lr_images = self.get_lr_images(data_names, n_revisits)
+        return hr_images, lr_images
 
     def get_hr_images(self, data_points):
         images = []
@@ -40,17 +32,58 @@ class DataManager:
             directory = self.data_folder + "/" + self.hr_dataset_name + "/" + data_point + "/" + data_point + "_rgb.png"
             images.append(Image.open(directory))
         images_tensor = torch.stack([transforms.ToTensor()(img) for img in images])
+        images_tensor = images_tensor.permute(0, 2, 3, 1)
         return images_tensor
 
-    def get_lr_images(self, data_points):
-        images = torch.zeros(len(data_points))
-        source = "L2A"  # Con el core es fijo aqui pero en el  futuro debe ser interchangeable
+    def get_lr_images(self, data_points, n_revisits=1, image_shape=(164, 164, 3)):
+        if n_revisits == 1:
+            images = torch.zeros(len(data_points), *image_shape)
+        else:
+            images = torch.zeros(len(data_points), n_revisits, *image_shape)
+
         for i, data_point in enumerate(data_points):
             directory = self.data_folder + "/" + self.lr_dataset_name + "/" + data_point + "/"
-            image_package = []
-            for image_id in range(1, 16):
-                directory = directory + "-" + str(id) + "-" + source + "_data.tiff"
-                image_package.append(tifffile.imread(directory))
-            tensor_package = torch.stack([transforms.ToTensor()(img) for img in image_package])
-            images[i] = tensor_package
+            lr_images_package = self.read_sat_image(directory, image_shape=image_shape, n_revisits=n_revisits)
+            lr_images_package.squeeze()
+            images[i] = lr_images_package
         return images
+
+    def read_sat_image(self, folder, image_shape, n_revisits):
+        images = torch.zeros(n_revisits, *image_shape)
+        i = 0
+        folder = folder + "L2A/"
+        for file_name in os.listdir(folder):
+            if i >= n_revisits:
+                break
+            if file_name.__contains__("_data"):
+                image = tifffile.imread(folder + file_name)
+                image_tensor = torch.from_numpy(self.transform_to_rgb(image))
+                images[i] = self.apply_padding(image_tensor, image_shape)
+                i += 1
+        return images
+
+    def transform_to_rgb(self, sat_image):
+        blue_band = sat_image[:, :, 0]
+        green_band = sat_image[:, :, 1]
+        red_band = sat_image[:, :, 2]
+
+        rgb_image = np.zeros((sat_image.shape[0], sat_image.shape[1], 3))
+        rgb_image[:, :, 0] = red_band
+        rgb_image[:, :, 1] = green_band
+        rgb_image[:, :, 2] = blue_band
+        return rgb_image
+
+    def apply_padding(self, image_tensor, image_shape):
+        n, m = image_tensor.shape[:2]
+        on, om = image_shape[:2]
+        pad_n = on - n
+        pad_m = om - m
+
+        pad_top = pad_n // 2
+        pad_bottom = pad_n - pad_top
+        pad_left = pad_m // 2
+        pad_right = pad_m - pad_left
+
+        padded_image_tensor = torch.nn.functional.pad(image_tensor, (0, 0, pad_left, pad_right, pad_top, pad_bottom))
+
+        return padded_image_tensor

@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="cuda" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="PLN" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="SatDataExploration" project-jdk-type="Python SDK" />
 </project>
