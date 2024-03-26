@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="ee8c141a-7fd7-4200-8975-6f5584c6214d" name="Changes" comment="data sampling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bicubic_interpolation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/bicubic_interpolation.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bicubic_interpolation.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bicubic_interpolation_satelite.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/bicubic_interpolation_satelite.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/DataManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/DataManager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +30,20 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Descalabreitor&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="2623bded-cb70-4c2e-ad64-2f8acff72d4c" />
+        <option name="url" value="https://github.com/Descalabreitor/bicubic-interpolation-upscaling.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -41,20 +55,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;normal__images&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/adria/Documents/GitHub/bicubic-interpolation-upscaling&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/adria/Documents/GitHub/Satelite_images_processing",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\adria\Documents\GitHub\bicubic-interpolation-upscaling" />
@@ -97,6 +111,8 @@
       <workItem from="1710349870507" duration="1395000" />
       <workItem from="1710351986248" duration="7000" />
       <workItem from="1710352005197" duration="274000" />
+      <workItem from="1710955611200" duration="82000" />
+      <workItem from="1711365757022" duration="649000" />
     </task>
     <task id="LOCAL-00001" summary="DataManager creation + folder check and data initialization">
       <option name="closed" value="true" />
@@ -146,6 +162,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="DataManager creation + folder check and data initialization" />
     <MESSAGE value="data sampling" />
-    <option name="LAST_COMMIT_MESSAGE" value="data sampling" />
+    <MESSAGE value="interpolation" />
+    <option name="LAST_COMMIT_MESSAGE" value="interpolation" />
   </component>
 </project>

@@ -63,9 +63,9 @@ class DataManager:
         return images
 
     def transform_to_rgb(self, sat_image):
-        blue_band = sat_image[:, :, 0]
-        green_band = sat_image[:, :, 1]
-        red_band = sat_image[:, :, 2]
+        blue_band = sat_image[:, :, 1]
+        green_band = sat_image[:, :, 2]
+        red_band = sat_image[:, :, 3]
 
         rgb_image = np.zeros((sat_image.shape[0], sat_image.shape[1], 3))
         rgb_image[:, :, 0] = red_band
